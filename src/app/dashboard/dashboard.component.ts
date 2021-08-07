@@ -32,12 +32,7 @@ export class DashboardComponent implements OnInit {
     arr['date'] = this.taskDate.value;
     arr['status'] = this.taskStatus.value;
     if (this.taskName.value && this.taskName.value !== "" && this.taskDate.value && this.taskStatus.value) {
-      this.allTasks.map(val => {
-
-      });
-
       this.allTasks.push(arr);
-      
       this.taskName.setValue(null)
       this.taskDate.setValue(null)
       this.taskStatus.setValue(null)
