@@ -1,0 +1,56 @@
+<div *ngIf="type=='delete'">
+  <h2>Task To be Deleted</h2>
+  <div class="tableClass">
+    <table>
+      <tr>
+        <th>Date</th>
+        <th>Task Name</th>
+        <th>Status</th>
+      </tr>
+      <tr>
+        <td>{{fromPage.date | json}}</td>
+        <td>{{fromPage.name}}</td>
+        <td>{{fromPage.status}}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="mainbuttonDiv">
+    <button class="button" mat-raised-button color="primary" (click)="deleteData()">Delete</button>
+    <button mat-raised-button (click)="closeDialog()">Close</button>
+  </div>
+</div>
+
+<div *ngIf="type=='edit'">
+  <form class="example-form">
+    <section>
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>Date</mat-label>
+          <input matInput [matDatepicker]="dataPicker">
+          <mat-datepicker-toggle matSuffix [for]="dataPicker"></mat-datepicker-toggle>
+          <mat-datepicker #dataPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Task Name</mat-label>
+          <input matInput value="taskName" matInput [formControl]="taskName">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>Status</mat-label>
+          <mat-select [formControl]="taskStatus">
+            <mat-option *ngFor="let item of status" [value]="item.value"> {{item.viewValue}} </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-raised-button color="primary" (click)="saveData();">Save</button>
+        <button mat-raised-button (click)="closeDialog()">Close</button>
+      </div>
+    </section>
+  </form>
+  
+</div>
