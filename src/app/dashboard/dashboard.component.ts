@@ -49,9 +49,8 @@ export class DashboardComponent implements OnInit {
 
   openDialog(index, type) {
     const dialogRef = this.dialog.open(DialogBoxComponent, {
+      disableClose: true,
       width: '400px',
-      backdropClass: 'custom-dialog-backdrop-class',
-      panelClass: 'custom-dialog-panel-class',
       data: { tasks: this.allTasks[index], index: index, actionType: type }
     });
 
