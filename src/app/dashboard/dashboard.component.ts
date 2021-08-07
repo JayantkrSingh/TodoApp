@@ -19,7 +19,6 @@ export class DashboardComponent implements OnInit {
     public dialog: MatDialog
   ) { }
 
-
   ngOnInit(): void { }
 
   status = [
@@ -27,16 +26,21 @@ export class DashboardComponent implements OnInit {
     { value: 'Inactive', viewValue: 'Inactive' },
   ];
 
-  dialogValue: string;
-  sendValue: string;
-
   onSubmit() {
     let arr = [];
     arr['name'] = this.taskName.value;
     arr['date'] = this.taskDate.value;
     arr['status'] = this.taskStatus.value;
     if (this.taskName.value && this.taskName.value !== "" && this.taskDate.value && this.taskStatus.value) {
+      this.allTasks.map(val => {
+
+      });
+
       this.allTasks.push(arr);
+      
+      this.taskName.setValue(null)
+      this.taskDate.setValue(null)
+      this.taskStatus.setValue(null)
     }
   }
 
@@ -46,8 +50,6 @@ export class DashboardComponent implements OnInit {
 
   editTask(index, result) {
     this.allTasks[index] = result
-
-    console.log("data saved in table >", this.allTasks, index);
   }
 
   openDialog(index, type) {
@@ -59,14 +61,11 @@ export class DashboardComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.dialogValue = result;
-
       if (result) {
         if (result.event === "delete" && type === "delete") {
           this.deleteTask(index);
         }
         if (result.event === "save" && type === "edit") {
-          console.log("Save date after close", result);
           this.editTask(index, result.data)
         }
       }

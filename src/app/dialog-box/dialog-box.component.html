@@ -1,3 +1,4 @@
+<!-- Open on Delete -->
 <div *ngIf="type=='delete'">
   <h2>Task To be Deleted</h2>
   <div class="tableClass">
@@ -20,18 +21,18 @@
   </div>
 </div>
 
+<!-- Open on Edit -->
 <div *ngIf="type=='edit'">
   <form class="example-form">
     <section>
       <div class="form-group">
         <mat-form-field appearance="fill">
           <mat-label>Date</mat-label>
-          <input matInput [matDatepicker]="dataPicker">
-          <mat-datepicker-toggle matSuffix [for]="dataPicker"></mat-datepicker-toggle>
-          <mat-datepicker #dataPicker></mat-datepicker>
+          <input matInput [matDatepicker]="datePicker" [formControl]="date">
+          <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+          <mat-datepicker #datePicker></mat-datepicker>
         </mat-form-field>
       </div>
-
       <div class="form-group">
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Task Name</mat-label>
@@ -51,6 +52,5 @@
         <button mat-raised-button (click)="closeDialog()">Close</button>
       </div>
     </section>
-  </form>
-  
+  </form>  
 </div>

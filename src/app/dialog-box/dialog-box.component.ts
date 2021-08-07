@@ -10,7 +10,7 @@ import { FormControl } from '@angular/forms';
 
 export class DialogBoxComponent implements OnInit {
   taskName: FormControl = new FormControl();
-  dataPicker: FormControl = new FormControl();
+  date: FormControl = new FormControl();
   taskStatus: FormControl = new FormControl();
   fromPage: any;
   fromDialog: string;
@@ -26,12 +26,9 @@ export class DialogBoxComponent implements OnInit {
   ) {
     this.fromPage = data.tasks;
     this.type = data.actionType;
-
     this.taskName.setValue(data.tasks.name);
-    this.dataPicker.setValue(data.tasks.date);
+    this.date.setValue(data.tasks.date);
     this.taskStatus.setValue(this.status.filter(entry => {return entry.value == data.tasks.status})[0].value);
-
-    console.log("dataPicker >", data.tasks.date);
   }
 
   ngOnInit(): void {}
@@ -46,10 +43,10 @@ export class DialogBoxComponent implements OnInit {
 
   saveData() {
     let arr = [];
-    if (this.taskName.value && this.taskName.value !== "" && this.dataPicker.value && this.taskStatus.value) {
+    if (this.taskName.value && this.taskName.value !== "" && this.date.value && this.taskStatus.value) {
       arr['name'] = this.taskName.value;
       arr['status'] = this.taskStatus.value;
-      arr['date'] = this.dataPicker.value;
+      arr['date'] = this.date.value;
       this.dialogRef.close({ event: 'save', data: arr });
     }
   }
